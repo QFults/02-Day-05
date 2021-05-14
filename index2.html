@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+      .card {
+        width: 300px;
+        display: inline-block;
+      }
+    </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <form>
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" class="form-control" id="title">
+        </div>
+        <div class="mb-3">
+          <label for="director" class="form-label">director</label>
+          <input type="text" class="form-control" id="director">
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">image</label>
+          <input type="text" class="form-control" id="image">
+        </div>
+        <div class="mb-3">
+          <label for="plot" class="form-label">plot</label>
+          <textarea name="plot" class="form-control" id="plot"rows="3"></textarea>
+        </div>
+        <button id="addMovie" type="submit" class="btn btn-primary">Add Movie</button>
+      </form>
+    </div>
+    <div id="movies" class="row">
+
+    </div>
+  </div>
+  <!-- <form>
+    <p>
+      <label for="title">title</label>
+      <input type="text" name="title" id="title">
+    </p>
+    <p>
+      <label for="director">director</label>
+      <input type="text" name="director" id="director">
+    </p>
+    <p>
+      <label for="image">image</label>
+      <input type="text" name="image" id="image">
+    </p>
+    <p>
+      <label for="plot">plot</label>
+      <textarea name="plot" id="plot" cols="30" rows="10"></textarea>
+    </p>
+    <p>
+      <button id="addMovie">Add Movie</button>
+    </p>
+  </form>
+  <div id="movies"></div> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+  <script>
+
+    let movies = [
+      {
+        title: 'Goodfellas',
+        director: 'Martin Scorsese',
+        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffanart.tv%2Ffanart%2Fmovies%2F769%2Fmovieposter%2Fgoodfellas-5236f4eb565d5.jpg&f=1&nofb=1',
+        plot: 'The story of Henry Hill and his life in the mob, covering his relationship with his wife Karen Hill and his mob partners Jimmy Conway and Tommy DeVito in the Italian-American crime syndicate.'
+      },
+      {
+        title: 'The Room',
+        director: 'Tommy Wiseau',
+        image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fbuzz.tt%2Fmedia%2Fposters%2F1871%2Fposters_4_1500.jpg&f=1&nofb=1',
+        plot: `Johnny is a successful bank executive who lives quietly in a San Francisco townhouse with his fiancée, Lisa. One day, putting aside any scruple, she seduces Johnny's best friend, Mark. From there, nothing will be the same again.`
+      }
+    ]
+
+    for (let i = 0; i < movies.length; i++) {
+      let movieElem = document.createElement('div')
+      movieElem.className = 'card movie'
+      movieElem.innerHTML = `
+      <img src="${movies[i].image}" class="card-img-top" alt="${movies[i].title}">
+      <div class="card-body">
+        <h5 class="card-title">${movies[i].title}</h5>
+        <h6>${movies[i].director}</h6>
+        <p class="card-text">${movies[i].plot}</p>
+      </div>
+      `
+      document.getElementById('movies').append(movieElem)
+    }
+
+    document.getElementById('addMovie').addEventListener('click', event => {
+      event.preventDefault()
+
+      let movieElem = document.createElement('div')
+      movieElem.className = 'card movie'
+      movieElem.innerHTML = `
+      <img src="${document.getElementById('image').value}" class="card-img-top" alt="${document.getElementById('title').value}">
+      <div class="card-body">
+        <h5 class="card-title">${document.getElementById('title').value}</h5>
+        <h6>${document.getElementById('director').value}</h6>
+        <p class="card-text">${document.getElementById('plot').value}</p>
+      </div>
+      `
+
+      document.getElementById('movies').append(movieElem)
+
+      // let movieElem = document.createElement('div')
+      // movieElem.innerHTML = `
+      //   <h1>Title: ${document.getElementById('title').value}</h1>
+      //   <h2>Director: ${document.getElementById('director').value}</h2>
+      //   <img src="${document.getElementById('image').value}" alt="${document.getElementById('title').value}">
+      //   <p>Plot: ${document.getElementById('plot').value}</p>
+      // `
+      // document.getElementById('movies').append(movieElem)
+
+      document.getElementById('title').value = ''
+      document.getElementById('director').value = ''
+      document.getElementById('image').value = ''
+      document.getElementById('plot').value = ''
+    })
+
+  </script>
+</body>
+
+</html>
