@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <form>
+    <p>
+      <label for="email">email</label>
+      <input type="text" name="email" id="email">
+    </p>
+    <p>
+      <label for="password">password</label>
+      <input type="password" name="password" id="password">
+    </p>
+    <p>
+      <button id="logIn">Log In</button>
+    </p>
+  </form>
+  <div id="users"></div>
+  <script>
+
+    document.getElementById('logIn').addEventListener('click', event => {
+      event.preventDefault()
+      // console.log(document.getElementById('email').value)
+      // console.log(document.getElementById('password').value)
+      // document.getElementById('user').innerHTML = `
+      //   <h1>Email: ${document.getElementById('email').value}</h1>
+      //   <h1>Password: ${document.getElementById('password').value}</h1>
+      // `
+
+      let userElem = document.createElement('div')
+      userElem.innerHTML = `
+        <h1>Email: ${document.getElementById('email').value}</h1>
+        <h1>Password: ${document.getElementById('password').value}</h1>
+      `
+      document.getElementById('users').prepend(userElem)
+
+      document.getElementById('email').value = ''
+      document.getElementById('password').value = ''
+    })
+
+  </script>
+</body>
+</html>
